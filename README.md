@@ -1,2 +1,131 @@
 # calci
 calculator
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Calculator</title>
+    <style>
+         
+h1 {  
+    text-align: center;  
+    padding: 23px;  
+    background-color: skyblue;  
+    color: white;  
+    }  
+  
+#clear{  
+width: 130px;  
+border: 3px solid gray;  
+    border-radius: 3px;  
+    padding: 20px;  
+    background-color: red;  
+}  
+#backspace{  
+width: 130px;  
+border: 3px solid gray;  
+    border-radius: 3px;  
+    padding: 20px;  
+    background-color: red;  
+} 
+  
+.formstyle  
+{  
+width: 300px;  
+height: 530px;  
+margin: auto;  
+border: 3px solid skyblue;  
+border-radius: 5px;  
+padding: 20px;  
+}  
+  
+  
+  
+input  
+{  
+width: 20px;  
+background-color: black;  
+color: white;  
+border: 3px solid gray;  
+    border-radius: 5px;  
+    padding: 26px;  
+    margin: 5px;  
+    font-size: 15px;  
+}  
+  
+  
+#calc{  
+width: 250px;  
+border: 5px solid black;  
+    border-radius: 3px;  
+    padding: 20px;  
+    margin: auto;  
+}  
+  
+
+    </style>
+</head>
+<body>
+    <h1>Calculator Program in JavaScript</h1>
+    <div class="formstyle">
+        <form name="form1">
+            <input id="calc" type="text" name="answer"> <br> <br>
+            
+            <input type="button" value="1" onclick="appendNumber('1')">
+            <input type="button" value="2" onclick="appendNumber('2')">
+            <input type="button" value="3" onclick="appendNumber('3')">
+            <input type="button" value="+" onclick="appendOperator('+')"><br><br>
+            <input type="button" value="4" onclick="appendNumber('4')">
+            <input type="button" value="5" onclick="appendNumber('5')">
+            <input type="button" value="6" onclick="appendNumber('6')">
+            <input type="button" value="-" onclick="appendOperator('-')"><br><br>
+            <input type="button" value="7" onclick="appendNumber('7')">
+            <input type="button" value="8" onclick="appendNumber('8')">
+            <input type="button" value="9" onclick="appendNumber('9')">
+            <input type="button" value="*" onclick="appendOperator('*')"><br><br>
+            <input type="button" value="/" onclick="appendOperator('/')">
+            <input type="button" value="0" onclick="appendNumber('0')">
+            <input type="button" value="." onclick="appendDecimal()">
+            <input type="button" value="=" onclick="calculate()"><br>
+            <input type="button" value="Clear All" onclick="clearDisplay()" id="clear">
+            <input type="button" value="⌫" onclick="backSpace()" id="backspace">
+        </form>
+    </div>
+    <script>
+        function appendNumber(number) {
+            document.forms["form1"]["answer"].value += number;
+        }
+
+        function appendOperator(operator) {
+            document.forms["form1"]["answer"].value += operator;
+        }
+
+        function appendDecimal() {
+            const currentValue = document.forms["form1"]["answer"].value;
+            if (!currentValue.includes('.')) {
+                document.forms["form1"]["answer"].value += '.';
+            }
+        }
+
+        function calculate() {
+            const expression = document.forms["form1"]["answer"].value;
+            try {
+                const result = eval(expression);
+                document.forms["form1"]["answer"].value = result;
+            } catch (error) {
+                document.forms["form1"]["answer"].value = 'Error';
+            }
+        }
+
+        function clearDisplay() {
+            document.forms["form1"]["answer"].value = '';
+        }
+
+        function backSpace() {
+            const currentValue = document.forms["form1"]["answer"].value;
+            document.forms["form1"]["answer"].value = currentValue.slice(0, -1);
+        }
+    </script>
+</body>
+</html>
